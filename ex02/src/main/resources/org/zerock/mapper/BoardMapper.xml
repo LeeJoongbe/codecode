@@ -4,7 +4,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.zerock.mapper.BoardMapper">
 
-<select id="getList" resultType="org.zerock.domain.BoardVO"><!--resulttype는 쿼리의 결과를 특정 클래스의 객체로 만들기 위해 설정함  -->
+<select id="getList" resultType="org.zerock.domain.BoardVO">
+<!--resulttype는 쿼리의 결과를 특정 클래스의 객체로 만들기 위해 설정함  -->
 <!--여기부터는 부등호 사용하기 위함  -->
 <![CDATA[
 select * from tbl_board where bno > 0
@@ -27,6 +28,30 @@ select * from tbl_board where bno > 0
 	insert into tbl_board(bno, title, content, writer)
 	values (seq_board.nextval, #{title}, #{content}, #{writer})
 </insert>
+
+<select id="read" resultType="org.zerock.domain.BoardVO">
+<!--id는 mapper 매소드와 동일  resultType는 쿼리결과를 특정객체로 만들기 위함 -->
+select * from tbl_board where bno = #{bno}
+<!-- tbl_board테이블에서 bno가 입력되는 매개변수 bno와 같은 값 
+그걸 resultType의 특정객체로 만든다. 
+BoardVO에는 bno title content writer regdate moddate가 있는 엔티티네? 도메인
+  -->
+</select>
+
+<delete id="delete"> 
+delete from tbl_board where bno = #{bno}
+</delete>
+
+<update id="update">
+update tbl_board set 
+title = #{title}, 
+content = #{content}, 
+writer = #{writer}, 
+updateDate = sysdate <!--sysdate : 현재 날짜 : 시간 구해오기--> 
+where bno = #{bno} 
+</update>
+
+
 
 
 </mapper>

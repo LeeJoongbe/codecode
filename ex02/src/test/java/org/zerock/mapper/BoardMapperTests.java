@@ -46,5 +46,52 @@ public class BoardMapperTests {
 		boardMapper.insertSelectKey(board);
 		log.info(board);
 	}
+	
+	@Test
+	public void testRead() {
+		BoardVO board = boardMapper.read(2L);
+		//BoardVO 타입의 board 에 boardMapper의 read매소드를 사용 매개값으로 2번(실수형)게시물검색
+		log.info("board bno 2 : " + board);
+	}
+	
+	@Test
+	public void testDelete() {
+		int bnoNum = boardMapper.delete(3L);
+		//boardMapper의 delete메소드를 사용 하여 2번 게시물을 지우고 반환값으로 bnoNum을 받는다.
+		//나중에 몇번게시물이 삭제 되어있습니다. 사용하기 위해서
+		if (bnoNum > 0) {
+			log.info(bnoNum + "개의 게시물이 삭제 되었습니다.");
+		}else {
+			log.info("해당 번호의 게시물이 없습니다.");
+		}
+		
+	}
 
+	@Test
+	public void testUpdate() {
+		BoardVO board = boardMapper.read(1L);
+		//1번 게시물을 가져와서 board에 담는다.
+		board.setTitle("이건 수정된 게시물입니다");
+		board.setContent("이건 수정된 게시물의 내용입니다.");
+		board.setWriter("작성자가 수정되었습니다.");
+		
+		int num = boardMapper.update(board);
+	}
+	
+	@Test
+	public void testUpdate2() {
+		BoardVO board = new BoardVO();
+		//실행전 존재하는 번호인지 확인 할 것
+		board.setBno(1L);
+		board.setTitle("다시수정된 제목");
+		board.setContent("다시 수정된 내용");
+		board.setWriter("다시 수정된 작성자");
+		
+		int count = boardMapper.update(board);
+		log.info("UPDATE COUNT : " + count);
+		
+		
+		
+	}
+	
 }
