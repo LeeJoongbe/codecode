@@ -12,7 +12,7 @@ public interface BoardMapper {//부트에서 repository와 같은 역활인거�
 
 	public void insert(BoardVO board); //저장하고 pk값이 필요 없는 경우
 	
-	public void insertSelectKey(BoardVO board); //저장하고 pk값이 필요 있는 경우
+	public int insertSelectKey(BoardVO board); //저장하고 pk값이 필요 있는 경우
 	
 	public BoardVO read(Long bno);	//읽기 BoardVO 타입이고 다음으로 mapper xml을 작성한다.
 	
