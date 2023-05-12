@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!--resulttype는 쿼리의 결과를 특정 클래스의 객체로 만들기 위해 설정함  -->
 <!--여기부터는 부등호 사용하기 위함  -->
 <![CDATA[
-select * from tbl_board where bno > 0
+select * from tbl_board where bno > 0 order by bno desc
 ]]>
 
 </select>

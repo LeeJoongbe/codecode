@@ -82,8 +82,8 @@ public class BoardServiceTests {
 			log.info(board.getBno()+"번 게시물이 삭제 되었습니다.");
 		}
 		
-		
-		
 	}
+	
+	
 
 }
