@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시판 등록</title>
 </head>
 <body>
 	
@@ -39,6 +39,9 @@
    	
    	<button type="submit" class="btn btn-primary">Submit</button>
    	<button type="reset" class="btn btn-secondary">Reset</button>
+   	<button type="button" class="btn btn-secondary"
+   	onclick="location.href='/board/list'"
+   	>List</button>
    </div>
    
     

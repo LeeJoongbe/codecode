@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 import org.zerock.mapper.BoardMapper;
 
 import lombok.AllArgsConstructor;
@@ -51,13 +52,22 @@ public class BoardServiceImpl implements BoardService{
 		return boardMapper.delete(bno) == 1;
 	}
 
+//	@Override
+//	public List<BoardVO> getList() {
+//		// TODO Auto-generated method stub
+//		
+//		log.info("getList............");
+//		
+//		return boardMapper.getList();
+//	}
+	
 	@Override
-	public List<BoardVO> getList() {
+	public List<BoardVO> getList(Criteria cri) {
 		// TODO Auto-generated method stub
 		
-		log.info("getList............");
+		log.info("getList with criteria : ............"  + cri);
 		
-		return boardMapper.getList();
+		return boardMapper.getListWithPaging(cri);
 	}
 	
 	

@@ -12,6 +12,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<!-- <div class="container"> --> <!--이거 전체 묶음  -->
+<div class="container-fluid">
 	<h1>List Page</h1>
 	<button type="button" onclick="location.href='/board/register'" class="btn btn-primary">글쓰기</button>	
 	<button type="button" class="btn btn-primary" id="regBtn">글쓰기 javascript</button>
@@ -67,7 +70,7 @@
 	        처리가 완료되었습니다.
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-primary">Save changes</button>
+	        <button type="button" class="btn btn-primary">그냥 있는 버튼</button>
 	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 	      </div>
 	    </div>
@@ -102,5 +105,8 @@
 	</script>
 	
 	<%@ include file="../includes/footer.jsp" %>
+	</div>
+	<!-- </div> --><!--전체 묶음 div end  -->
+	
 </body>
 </html>

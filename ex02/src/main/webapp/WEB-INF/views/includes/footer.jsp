@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+</div>
 <footer id="footer">
         <div class="row">
           <div class="col-lg-12">

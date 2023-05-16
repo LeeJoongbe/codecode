@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 import org.zerock.service.BoardService;
 
 import lombok.AllArgsConstructor;
@@ -24,11 +25,12 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@GetMapping("/list")
-	public void list(Model model) {
+	public void list(Model model, Criteria cri) {
 		
-		log.info("list");
+		log.info("list" + cri);
 		
-		model.addAttribute("list", boardService.getList());
+//		model.addAttribute("list", boardService.getList());
+		model.addAttribute("list", boardService.getList(cri));
 	}
 	
 	@GetMapping("/register")
@@ -48,10 +50,10 @@ public class BoardController {
 		return "redirect:/board/list";  //위의 처리과정을 가지고 주소를 찾아간다. 
 	}
 	
-	@GetMapping("/get") //상세보기
+	@GetMapping({"/get", "/modify"}) //상세보기
 	public void get(@RequestParam("bno") Long bno, Model model) {
 		// list에서 bno를 가지고 들어간다.
-		log.info("/get");
+		log.info("/get or modify");
 		model.addAttribute("board", boardService.get(bno));
 		
 	}
@@ -69,7 +71,7 @@ public class BoardController {
 	}
 	
 	@PostMapping("/remove")
-	public String remove (@RequestParam("bno")Long bno, RedirectAttributes rttr) {
+	public String remove (@RequestParam("bno") Long bno, RedirectAttributes rttr) {
 		log.info("remove..... : " +bno );
 		
 		if(boardService.remove(bno)) {
