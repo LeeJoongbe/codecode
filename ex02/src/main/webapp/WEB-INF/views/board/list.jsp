@@ -37,9 +37,9 @@
       <c:out value="${board.bno }"></c:out>
       </td>
       <td>
-      <a href="/board/get?bno=<c:out value='${board.bno }'/>" style="text-decoration: none;">
-      <c:out value="${board.title}"></c:out>
-      </a>
+      	<a class="move" href="<c:out value='${board.bno }'/>" style="text-decoration: none;">
+      		<c:out value="${board.title}"></c:out>
+      	</a>
       </td>
       <td>
       <c:out value="${board.writer}"></c:out>
@@ -56,6 +56,68 @@
     
   </tbody>
 </table>
+
+<!--Pagination  -->
+	<div> 
+	  <ul class="pagination">
+	  	
+	  	<c:if test = "${pageMaker.prev}">
+	  		<li class="page-item disabled">
+	      		<a class="page-link" href="${pageMaker.startPage -1 }">Previous</a>
+	    	</li>
+	  	</c:if>
+	  
+	  	<c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+	  		<li class="page-item  ${pageMaker.cri.pageNum == num ? 'active' : "" }">
+		      <a class="page-link"  href="${num}">${num}</a>
+		    </li>
+	  	</c:forEach>
+	  
+	  
+	  	<c:if test = "${pageMaker.next}">
+	  		<li class="page-item disabled">
+	      		<a class="page-link" href="${pageMaker.endPage +1}">Next</a>
+	    	</li>
+	  	</c:if>
+	  
+	    
+	  </ul>
+	</div>
+	
+	<div>
+  <ul class="pagination">
+    <li class="page-item disabled">
+      <a class="page-link" href="#">&laquo;</a>
+    </li>
+    <li class="page-item active">
+      <a class="page-link" href="#">1</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">2</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">3</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">4</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">5</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">&raquo;</a>
+    </li>
+  </ul>
+</div>
+
+	<form id='actionForm' action="/board/list" method="get">
+		<input type="text" name="pageNum" value="${pageMaker.cri.pageNum}">
+		<input type="text" name="amount" value="${pageMaker.cri.amount}">
+	
+	</form>
+
+	
+
 
 	<div class="modal" id="myModal">
 	  <div class="modal-dialog" role="document">
@@ -98,7 +160,27 @@
 			
 			$("#regBtn").on("click", function() {
 				self.location = "/board/register";
-			})
+			});
+			
+			var  actionForm = $("#actionForm");
+			
+			$(".page-item a").on("click", function(e){
+				e.preventDefault();
+				console.log('click');
+				actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+				actionForm.submit();
+			});
+			
+			
+			 $(".move").on("click", function(a) {
+				
+				a.preventDefault();
+				actionForm.append("<input type='hidden' name='bno' value='"+
+						$(this).attr("href")+"'>");
+				actionForm.attr("action", "/board/get");
+				actionForm.submit();
+				
+			}) 
 			
 		});
 	

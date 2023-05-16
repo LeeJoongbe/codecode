@@ -11,7 +11,7 @@
 </head>
 <body>
 	
-	<form action="/board/register" method="post" role="form">
+<form >
   <fieldset>
     <legend>게시물 상세페이지</legend>
     
@@ -55,9 +55,17 @@
    	>List</button>
    </div>
    
+   
+   
     
   </fieldset>
 </form>
+
+ 	<form action="/board/modify" method="get">
+ 	 <input type="hidden" id="bno" name="bno" value='<c:out value="${board.bno }"></c:out>'>
+ 	<input type="hidden" name="pagNum" value='<c:out value="${cri.pageNum}"></c:out>'>
+ 	<input type="hidden" name="amount" value='<c:out value="${cri.amount}"></c:out>'>
+ 	</form>
 
 <%@ include file="../includes/footer.jsp" %>
 </body>
