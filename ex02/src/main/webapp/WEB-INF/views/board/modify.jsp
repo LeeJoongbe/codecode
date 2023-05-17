@@ -12,8 +12,10 @@
 <body>
 	
 	<form action="/board/modify" method="post" role="form">
-		<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"></c:out>'>
-		<input type="hidden" name="amount" value='<c:out value="${cri.amount}"></c:out>'>
+		<input type="text" name="pageNum" value='<c:out value="${cri.pageNum}"></c:out>'>
+		<input type="text" name="amount" value='<c:out value="${cri.amount}"></c:out>'>
+		<input type="hidden" name="type" value="<c:out value='${cri.type}'/>">
+		<input type="hidden" name="keyword" value="<c:out value='${cri.keyword}'/>">
   
   
   <fieldset>
@@ -97,14 +99,14 @@
 			}else if(operation === 'list'){
 				
 				formObj.attr("action", "/board/list").attr("method", "get");
-				var pageNumTag = $("input[name='pageNum']").clone();
+				/* var pageNumTag = $("input[name='pageNum']").clone();
 				var amountTag = $("input[name='amount']").clone();
 				
 				
 				formObj.empty();
 				formObj.append(pageNumTag);
-				formObj.append(amountTag);
-				
+				formObj.append(amountTag); */
+				/*클론으로 인해 pageNum과 amount는 두번적용되고 한번은 null값  */
 			}
 			formObj.submit();
 		});

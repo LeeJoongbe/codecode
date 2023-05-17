@@ -65,6 +65,8 @@
  	 <input type="hidden" id="bno" name="bno" value='<c:out value="${board.bno }"/>'>
  	<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"></c:out>'>
  	<input type="hidden" name="amount" value='<c:out value="${cri.amount}"></c:out>'>
+ 	<input type="hidden" name="type" value="<c:out value='${cri.type}'/>">
+	<input type="hidden" name="keyword" value="<c:out value='${cri.keyword}'/>">
  	</form>
 
 	<script type="text/javascript">

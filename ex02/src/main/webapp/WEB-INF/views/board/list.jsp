@@ -88,6 +88,8 @@
 	<form id='actionForm' action="/board/list" method="get">
 		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+		<input type="hidden" name="type" value="<c:out value='${pageMaker.cri.type}'/>">
+		<input type="hidden" name="keyword" value="<c:out value='${pageMaker.cri.keyword}'/>">
 	
 	</form>
 
@@ -147,9 +149,9 @@
 			});
 			
 			
-			 $(".move").on("click", function(a) {
+			 $(".move").on("click", function(e) {
 				
-				a.preventDefault();
+				e.preventDefault();
 				actionForm.append("<input type='hidden' name='bno' value='"+
 						$(this).attr("href")+"'>");
 				actionForm.attr("action", "/board/get");

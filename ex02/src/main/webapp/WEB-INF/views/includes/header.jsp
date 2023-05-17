@@ -83,6 +83,7 @@
          <input name="keyword" class="form-control me-sm-2" type="search" placeholder="Search" 
         	value="<c:out value="${pageMaker.cri.keyword}" />"
         >
+        
         <input type="hidden" name="pageNum" value="<c:out value="${pageMaker.cri.pageNum }"/>">
         <input type="hidden" name="amount" value="<c:out value="${pageMaker.cri.amount }"/>">
         <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
