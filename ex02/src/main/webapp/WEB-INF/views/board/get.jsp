@@ -11,7 +11,7 @@
 </head>
 <body>
 	
-<form >
+
   <fieldset>
     <legend>게시물 상세페이지</legend>
     
@@ -47,10 +47,10 @@
    <br>
    <div>
    	
-   	<button type="button" class="btn btn-primary" 
+   	<button data-oper='modify' class="btn btn-primary" 
    	onclick="location.href='/board/modify?bno=<c:out value="${board.bno }" />'">
    	modify</button>
-   	<button type="button" class="btn btn-secondary"
+   	<button data-oper='list' class="btn btn-secondary"
    	onclick="location.href='/board/list'"
    	>List</button>
    </div>
@@ -59,13 +59,35 @@
    
     
   </fieldset>
-</form>
 
- 	<form action="/board/modify" method="get">
- 	 <input type="hidden" id="bno" name="bno" value='<c:out value="${board.bno }"></c:out>'>
- 	<input type="hidden" name="pagNum" value='<c:out value="${cri.pageNum}"></c:out>'>
+
+ 	<form id='operForm' action="/board/modify" method="get">
+ 	 <input type="hidden" id="bno" name="bno" value='<c:out value="${board.bno }"/>'>
+ 	<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"></c:out>'>
  	<input type="hidden" name="amount" value='<c:out value="${cri.amount}"></c:out>'>
  	</form>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var operForm= $("#operForm");
+			
+			$("button[data-oper = 'modify']").on("click", function(e){
+				
+				operForm.attr("action", "/board/modify").submit();
+				
+			});
+			
+			$("button[data-oper = 'list']").on("click", function(e){
+				operForm.find('#bno').remove();
+				operForm.attr('action', "/board/list")
+				operForm.submit();
+			});
+			
+		});
+	
+	</script>
+
+
 
 <%@ include file="../includes/footer.jsp" %>
 </body>

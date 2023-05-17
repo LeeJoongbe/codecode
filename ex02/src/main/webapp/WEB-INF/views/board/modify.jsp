@@ -12,6 +12,10 @@
 <body>
 	
 	<form action="/board/modify" method="post" role="form">
+		<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"></c:out>'>
+		<input type="hidden" name="amount" value='<c:out value="${cri.amount}"></c:out>'>
+  
+  
   <fieldset>
     <legend>게시물 수정페이지</legend>
     
@@ -87,10 +91,20 @@
 			console.log(operation);
 			
 			if(operation === 'remove'){
+				
 				formObj.attr("action", "/board/remove");
+				
 			}else if(operation === 'list'){
-				self.location="/board/list";
-				return;
+				
+				formObj.attr("action", "/board/list").attr("method", "get");
+				var pageNumTag = $("input[name='pageNum']").clone();
+				var amountTag = $("input[name='amount']").clone();
+				
+				
+				formObj.empty();
+				formObj.append(pageNumTag);
+				formObj.append(amountTag);
+				
 			}
 			formObj.submit();
 		});

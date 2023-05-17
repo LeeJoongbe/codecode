@@ -62,7 +62,7 @@
 	  <ul class="pagination">
 	  	
 	  	<c:if test = "${pageMaker.prev}">
-	  		<li class="page-item disabled">
+	  		<li class="page-item ">
 	      		<a class="page-link" href="${pageMaker.startPage -1 }">Previous</a>
 	    	</li>
 	  	</c:if>
@@ -75,7 +75,7 @@
 	  
 	  
 	  	<c:if test = "${pageMaker.next}">
-	  		<li class="page-item disabled">
+	  		<li class="page-item ">
 	      		<a class="page-link" href="${pageMaker.endPage +1}">Next</a>
 	    	</li>
 	  	</c:if>
@@ -83,36 +83,11 @@
 	    
 	  </ul>
 	</div>
-	
-	<div>
-  <ul class="pagination">
-    <li class="page-item disabled">
-      <a class="page-link" href="#">&laquo;</a>
-    </li>
-    <li class="page-item active">
-      <a class="page-link" href="#">1</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">2</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">3</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">4</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">5</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">&raquo;</a>
-    </li>
-  </ul>
-</div>
+
 
 	<form id='actionForm' action="/board/list" method="get">
-		<input type="text" name="pageNum" value="${pageMaker.cri.pageNum}">
-		<input type="text" name="amount" value="${pageMaker.cri.amount}">
+		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 	
 	</form>
 

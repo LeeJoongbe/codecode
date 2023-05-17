@@ -23,4 +23,6 @@ public interface BoardMapper {//부트에서 repository와 같은 역활인거�
 	
 	public int update(BoardVO board); //수정 BoardVO타입을 매개변수로 받고 반환타입 int
 	
+	public int getTotalCount(Criteria cri);
+	
 }
