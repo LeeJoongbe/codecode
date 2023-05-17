@@ -52,8 +52,39 @@
           </div>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-sm-2" type="search" placeholder="Search">
+      <form class="d-flex" id='searchForm' action="/board/list" method='get'>
+      	    <div class="form-group">
+		      
+		      <select name="type" class="form-select" id="exampleSelect1">
+		        <option value=""
+		        	<c:out value="${pageMaker.cri.type == null?'selected':'' }" />
+		        >--</option>
+		        <option value="T"
+		        	<c:out value="${pageMaker.cri.type eq 'T'?'selected':'' }" />
+		        >제목</option>
+		        <option value="C"
+		        	<c:out value="${pageMaker.cri.type eq 'C'?'selected':'' }" />
+		        >내용</option>
+		        <option value="W"
+		        	<c:out value="${pageMaker.cri.type eq 'W'?'selected':'' }" />
+		        >작성자</option>
+		        <option value="TC"
+		        	<c:out value="${pageMaker.cri.type eq 'TC'?'selected':'' }" />
+		        >제목 or 내용</option>
+		        <option value="TW"
+		        	<c:out value="${pageMaker.cri.type eq 'TW'?'selected':'' }" />
+		        >제목 or 작성자</option>
+		        <option value="TWC"
+		        	<c:out value="${pageMaker.cri.type eq 'TWC'?'selected':'' }" />
+		        >제목 or 내용 or 작성자</option>
+		      </select>
+		    </div>
+      
+         <input name="keyword" class="form-control me-sm-2" type="search" placeholder="Search" 
+        	value="<c:out value="${pageMaker.cri.keyword}" />"
+        >
+        <input type="hidden" name="pageNum" value="<c:out value="${pageMaker.cri.pageNum }"/>">
+        <input type="hidden" name="amount" value="<c:out value="${pageMaker.cri.amount }"/>">
         <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
@@ -62,5 +93,32 @@
 
 
 <div class="container">
+
+		<script type="text/javascript">
+		$(document).ready(function() {
+			var searchForm = $("#searchForm");
+			$("#searchForm button").on("click", function(e){
+				
+				if(!searchForm.find("option:selected").val()){
+					alert("검색종류를 선택하세요");
+					return false;
+				}
+				if(!searchForm.find("input[name='keyword']").val()){
+					alert("키워드를 입력하세요");
+					return false;
+				}
+				
+				searchForm.find("input[name='pageNum']").val("1");
+				searchForm.find("input[name='amount']").val("10");
+				e.preventDefault();
+				
+				searchForm.submit();
+				
+			});
+			
+			
+		});
+		
+		</script>
 </body>
 </html>
