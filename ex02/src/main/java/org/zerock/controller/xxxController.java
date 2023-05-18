@@ -20,7 +20,7 @@ import org.zerock.domain.SampleVO;
 import org.zerock.domain.Ticket;
 
 import lombok.extern.log4j.Log4j2;
-import oracle.jdbc.proxy.annotation.Post;
+
 
 @RestController
 @RequestMapping("/xxtext")

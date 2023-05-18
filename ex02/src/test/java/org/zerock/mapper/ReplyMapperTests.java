@@ -20,7 +20,7 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class ReplyMapperTests {
 	
-	private Long[] bnoArr = { 1300L, 1298L, 1296L, 1294L};
+	private Long[] bnoArr = { 158L, 160L, 162L, 164L, 166L};
 	
 	@Setter(onMethod_ = @Autowired)
 	private ReplyMapper mapper;
@@ -84,7 +84,7 @@ public class ReplyMapperTests {
 	public void testList() {
 		Criteria cri = new Criteria();
 		
-		List<ReplyVO> replies = mapper.getListWithPaging(cri, 1298L);
+		List<ReplyVO> replies = mapper.getListWithPaging(cri, 160L);
 		replies.forEach(reply -> log.info(reply));
 	}
 	
